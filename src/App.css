@@ -1,0 +1,124 @@
+#root {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.auth-form {
+  min-width: 500px;
+  max-width: 800px;
+  background-color: lightblue;
+  padding: 2rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  color: white;
+  font-weight: 700;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.form-label {
+  align-self: start;
+}
+
+.form-input {
+  height: 2rem;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 1rem;
+  background-color: white;
+}
+
+.team-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 50%;
+  height: 100%;
+}
+
+.team-item {
+  margin-bottom: 1rem;
+  min-width: 100%;
+  background-color: lightblue;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  font-weight: 700;
+}
+
+.team-name {
+  min-width: 70%;
+  margin: 0 2rem;
+  background-color: white;
+  padding: 0 2rem;
+  border-radius: 10px;
+  color: black;
+  font-weight: 700;
+}
+
+.team-description {
+  min-width: 70%;
+  margin: 0 1rem;
+  background-color: white;
+  padding: 0 2rem;
+  border-radius: 10px;
+  color: black;
+  font-weight: 500;
+}
+
+.create-team-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-page {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+}
+
+.home-page-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 80%;
+  height: 100vh;
+  margin: 0;
+  background-color: lightblue;
+  color: white;
+}
+
+.create-team-form {
+  margin-bottom: 1rem;
+  min-width: 100%;
+  background-color: lightblue;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  font-weight: 700;
+}
+
+.basic-multi-select {
+  max-width: 400px;
+  min-width: 400px;
+  color: black;
+}
