@@ -21,9 +21,7 @@ const CreateTeam = () => {
       body: JSON.stringify(teamData),
     })
       .then((response) => response.json())
-      .then((payload) => {
-        console.log("payload");
-        console.log(payload);
+      .then(() => {
         navigate("/dashboard", { replace: true });
       });
   };

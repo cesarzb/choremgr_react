@@ -12,7 +12,7 @@ const Register = () => {
   const navigate = useNavigate();
   const { saveToken } = useAuth();
 
-  const handleChange = () => {
+  const handleChange = (e) => {
     if (e.target.id === "email") {
       setEmail(e.target.value);
     } else if (e.target.id === "password") {
@@ -28,7 +28,7 @@ const Register = () => {
     return password === passwordConfirmation ? true : false;
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validatePassword()) {
@@ -57,8 +57,10 @@ const Register = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       } else {
-        saveToken(response.headers.get("authorization"));
-        navigate("/");
+        const tomorrow = new Date();
+        tomorrow.setDate(new Date().getDate() + 1);
+        saveToken({ jwt: response.headers.get("authorization"), tomorrow });
+        navigate("/dashboard");
       }
     } catch (error) {
       console.error("An error occurred:", error);
@@ -113,9 +115,7 @@ const Register = () => {
           id="role"
           className="form-input"
           value={role}
-          onChange={(e) => {
-            handleChange(e);
-          }}
+          onChange={handleChange}
         >
           <option value="0">Executor</option>
           <option value="1">Manager</option>
