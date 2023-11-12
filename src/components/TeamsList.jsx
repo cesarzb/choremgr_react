@@ -32,7 +32,10 @@ const TeamsList = () => {
       <Link to="/teams/new">Create a new team</Link>
     </main>
   ) : (
-    <main>No teams to show :(</main>
+    <main>
+      <p>No teams to show :(</p>
+      <Link to="/teams/new">Create a new team</Link>
+    </main>
   );
 };
 
