@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { API_URL, API_VERSION } from "../constants";
-import useAuth from "../hooks/useAuth";
+import { API_URL, API_VERSION } from "../../constants";
+import useAuth from "../../hooks/useAuth";
 
 const DeleteTeam = ({ teamId }) => {
   const navigate = useNavigate();

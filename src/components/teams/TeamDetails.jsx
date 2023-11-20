@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { Link, useParams } from "react-router-dom";
-import { API_URL, API_VERSION } from "../constants";
+import { API_URL, API_VERSION } from "../../constants";
 import DeleteTeam from "./DeleteTeam";
 
 const TeamDetails = () => {
@@ -67,6 +67,16 @@ const TeamDetails = () => {
             <p>No managers yet...</p>
           )}
         </div>
+        <Link to={`/teams/${team.id}/chores/new`} className="create-chore-link">
+          Create a chore
+        </Link>
+        <Link
+          to={`/chores`}
+          state={{ teamId: team.id }}
+          className="show-team-chores-link"
+        >
+          Show team chores
+        </Link>
         <Link to={`/teams/${team.id}/edit`} className="team-edit-link">
           Edit team
         </Link>

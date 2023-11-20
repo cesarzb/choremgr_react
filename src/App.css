@@ -40,7 +40,7 @@
   background-color: white;
 }
 
-.team-list {
+.teams-list {
   display: flex;
   flex-direction: column;
   min-width: 50%;
@@ -81,11 +81,6 @@
   font-weight: 500;
 }
 
-.create-team-form {
-  display: flex;
-  flex-direction: column;
-}
-
 .home-page {
   display: flex;
   justify-content: center;
@@ -117,8 +112,69 @@
   font-weight: 700;
 }
 
+.create-chore-form {
+  margin-bottom: 1rem;
+  min-width: 100%;
+  background-color: lightblue;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  font-weight: 700;
+}
+
 .basic-multi-select {
   max-width: 400px;
   min-width: 400px;
   color: black;
+}
+
+.basic-select {
+  max-width: 400px;
+  min-width: 400px;
+  color: black;
+}
+
+.chores-list {
+  display: flex;
+  flex-direction: column;
+  min-width: 50%;
+  height: 100%;
+}
+
+.chore-item {
+  margin-bottom: 1rem;
+  min-width: 100%;
+  background-color: lightblue;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+  font-weight: 700;
+}
+
+.chore-name {
+  min-width: 70%;
+  margin: 0 2rem;
+  background-color: white;
+  padding: 0 2rem;
+  border-radius: 10px;
+  color: black;
+  font-weight: 700;
+}
+
+.chore-description {
+  min-width: 70%;
+  margin: 0 1rem;
+  background-color: white;
+  padding: 0 2rem;
+  border-radius: 10px;
+  color: black;
+  font-weight: 500;
 }

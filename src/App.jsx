@@ -6,9 +6,13 @@ import Register from "./components/Register";
 import Layout from "./components/Layout";
 import RequireAuth from "./components/RequireAuth";
 import Dashboard from "./components/Dashboard";
-import TeamDetails from "./components/TeamDetails";
-import CreateTeam from "./components/CreateTeam";
-import UpdateTeam from "./components/UpdateTeam";
+import TeamDetails from "./components/teams/TeamDetails";
+import CreateTeam from "./components/teams/CreateTeam";
+import UpdateTeam from "./components/teams/UpdateTeam";
+import CreateChore from "./components/chores/CreateChore";
+import ChoresList from "./components/chores/ChoresList";
+import ChoreDetails from "./components/chores/ChoreDetails";
+import UpdateChore from "./components/chores/UpdateChore";
 
 function App() {
   return (
@@ -25,6 +29,16 @@ function App() {
           <Route path="/teams/:teamId" element={<TeamDetails />} />
           <Route path="/teams/new" element={<CreateTeam />} />
           <Route path="/teams/:teamId/edit" element={<UpdateTeam />} />
+          <Route path="/chores" element={<ChoresList />} />
+          <Route path="/teams/:teamId/chores/new" element={<CreateChore />} />
+          <Route
+            path="/teams/:teamId/chores/:choreId"
+            element={<ChoreDetails />}
+          />
+          <Route
+            path="/teams/:teamId/chores/:choreId/edit"
+            element={<UpdateChore />}
+          />
         </Route>
       </Route>
     </Routes>
