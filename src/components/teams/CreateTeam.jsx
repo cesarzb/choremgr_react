@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
-import { API_URL, API_VERSION } from "../constants";
-import useAuth from "../hooks/useAuth";
+import { useState } from "react";
+import { API_URL, API_VERSION } from "../../constants";
+import useAuth from "../../hooks/useAuth";
 import { useNavigate } from "react-router-dom";
 
 const CreateTeam = () => {

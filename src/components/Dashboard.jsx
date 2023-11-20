@@ -1,4 +1,4 @@
-import TeamsList from "./TeamsList";
+import TeamsList from "./teams/TeamsList";
 
 const Dashboard = () => {
   return (

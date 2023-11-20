@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { API_URL, API_VERSION } from "../constants";
-import useAuth from "../hooks/useAuth";
+import { API_URL, API_VERSION } from "../../constants";
+import useAuth from "../../hooks/useAuth";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import SelectList from "./shared/SelectList";
+import SelectList from "../shared/SelectList";
 
 const UpdateTeam = () => {
   const [name, setName] = useState("");
@@ -124,7 +124,6 @@ const UpdateTeam = () => {
       <label htmlFor="team-executors" className="team-executors-label">
         Team executors
       </label>
-
       <SelectList
         id="team-executors"
         className="team-executors-input"
@@ -134,6 +133,7 @@ const UpdateTeam = () => {
           setExecutors(e);
         }}
       />
+
       <label htmlFor="team-managers" className="team-managers-label">
         Team managers
       </label>
