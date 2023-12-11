@@ -5,8 +5,9 @@ const RequireAuth = () => {
   const { auth } = useAuth();
   const location = useLocation();
 
+  const { accessToken, expiration } = auth;
   const now = new Date();
-  return auth.accessToken && auth.expiration < now ? (
+  return accessToken && expiration && new Date(expiration) > now ? (
     <Outlet />
   ) : (
     <Navigate to="/login" state={{ from: location }} replace />

@@ -5,7 +5,7 @@ const AuthContext = createContext({});
 export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     accessToken: sessionStorage.getItem("jwtToken") || "",
-    expiration: null,
+    expiration: sessionStorage.getItem("jwtTokenExpiration") || null,
   });
 
   const saveToken = (token) => {
