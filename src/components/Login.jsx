@@ -38,7 +38,10 @@ const Login = () => {
       } else {
         const tomorrow = new Date();
         tomorrow.setDate(new Date().getDate() + 1);
-        saveToken({ jwt: response.headers.get("authorization"), tomorrow });
+        saveToken({
+          jwt: response.headers.get("authorization"),
+          expiration: tomorrow,
+        });
         navigate(from, { replace: true });
       }
     } catch (error) {
