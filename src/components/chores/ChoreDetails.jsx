@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useParams } from "react-router-dom";
 import { API_URL, API_VERSION } from "../../constants";
 import DeleteChore from "./DeleteChore";
+import ChoreExecutionsList from "../chore_executions/ChoreExecutionsList";
 
 const ChoreDetails = () => {
   const { auth } = useAuth();
@@ -53,6 +54,7 @@ const ChoreDetails = () => {
             </div>
           </div>
         </div>
+        <ChoreExecutionsList choreId={choreId} teamId={teamId} />
         <DeleteChore choreId={choreId} teamId={teamId} />
         <Link
           to={`/teams/${teamId}/chores/${chore.id}/edit`}
