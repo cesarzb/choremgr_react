@@ -29,7 +29,9 @@ const TeamsList = () => {
           </Link>
         </div>
       ))}
-      <Link to="/teams/new">Create a new team</Link>
+      {auth.role === "manager" && (
+        <Link to="/teams/new">Create a new team</Link>
+      )}
     </main>
   ) : (
     <main>

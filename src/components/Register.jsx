@@ -57,13 +57,17 @@ const Register = () => {
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);
       } else {
-        const tomorrow = new Date();
-        tomorrow.setDate(new Date().getDate() + 1);
-        saveToken({
-          jwt: response.headers.get("authorization"),
-          expiration: tomorrow,
+        response.json().then((payload) => {
+          const tomorrow = new Date();
+          tomorrow.setDate(new Date().getDate() + 1);
+          saveToken({
+            jwt: response.headers.get("authorization"),
+            expiration: tomorrow,
+            role: payload.role,
+            id: payload.id,
+          });
+          navigate("/dashboard");
         });
-        navigate("/dashboard");
       }
     } catch (error) {
       console.error("An error occurred:", error);

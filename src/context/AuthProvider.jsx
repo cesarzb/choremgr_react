@@ -6,13 +6,21 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     accessToken: sessionStorage.getItem("jwtToken") || "",
     expiration: sessionStorage.getItem("jwtTokenExpiration") || null,
+    expiration: sessionStorage.getItem("userRole") || "",
   });
 
   const saveToken = (token) => {
     sessionStorage.setItem("jwtToken", token.jwt);
     sessionStorage.setItem("jwtTokenExpiration", token.expiration);
+    sessionStorage.setItem("userRole", token.role);
+    sessionStorage.setItem("userId", token.id);
 
-    setAuth({ accessToken: token.jwt, expiration: token.expiration });
+    setAuth({
+      accessToken: token.jwt,
+      expiration: token.expiration,
+      role: token.role,
+      currentUserId: token.id,
+    });
   };
 
   return (

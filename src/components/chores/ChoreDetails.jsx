@@ -25,6 +25,11 @@ const ChoreDetails = () => {
         setIsLoading(false);
       });
   }, []);
+
+  const isChoreManager = () => chore?.manager?.id === auth.currentUserId;
+
+  const isChoreExecutor = () => chore?.executor?.id === auth.currentUserId;
+
   return isLoading ? (
     <div className="loading">Loading...</div>
   ) : (
@@ -54,14 +59,24 @@ const ChoreDetails = () => {
             </div>
           </div>
         </div>
-        <ChoreExecutionsList choreId={choreId} teamId={teamId} />
-        <DeleteChore choreId={choreId} teamId={teamId} />
-        <Link
-          to={`/teams/${teamId}/chores/${chore.id}/edit`}
-          className="chore-edit-link"
-        >
-          Edit chore
-        </Link>
+        {(isChoreManager() || isChoreExecutor()) && (
+          <ChoreExecutionsList
+            choreId={choreId}
+            teamId={teamId}
+            isChoreExecutor={isChoreExecutor()}
+          />
+        )}
+        {isChoreManager() && (
+          <>
+            <DeleteChore choreId={choreId} teamId={teamId} />
+            <Link
+              to={`/teams/${teamId}/chores/${chore.id}/edit`}
+              className="chore-edit-link"
+            >
+              Edit chore
+            </Link>
+          </>
+        )}
         <Link to={`/teams/${teamId}`} className="team-link">
           Back to team
         </Link>

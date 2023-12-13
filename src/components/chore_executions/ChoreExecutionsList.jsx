@@ -4,7 +4,7 @@ import useAuth from "../../hooks/useAuth";
 import DeleteChoreExecution from "./DeleteChoreExecution";
 import CreateChoreExecution from "./CreateChoreExecution";
 
-const ChoreExecutionsList = ({ teamId, choreId }) => {
+const ChoreExecutionsList = ({ teamId, choreId, isChoreExecutor }) => {
   const { auth } = useAuth();
   const [choreExecutions, setChoreExecutions] = useState({});
 
@@ -43,12 +43,14 @@ const ChoreExecutionsList = ({ teamId, choreId }) => {
     <main className="chore-executions-list">
       <div className="create-chore-execution">
         <p>Chore executions:</p>
-        <CreateChoreExecution
-          choreId={choreId}
-          teamId={teamId}
-          choreExecutions={choreExecutions}
-          setChoreExecutions={setChoreExecutions}
-        />
+        {isChoreExecutor && (
+          <CreateChoreExecution
+            choreId={choreId}
+            teamId={teamId}
+            choreExecutions={choreExecutions}
+            setChoreExecutions={setChoreExecutions}
+          />
+        )}
       </div>
 
       {choreExecutions?.map((choreExecution) => (
@@ -56,13 +58,15 @@ const ChoreExecutionsList = ({ teamId, choreId }) => {
           <div className="chore-execution-date">
             {formattedDate(choreExecution.date)}
           </div>
-          <DeleteChoreExecution
-            choreId={choreId}
-            teamId={teamId}
-            choreExecutionId={choreExecution.id}
-            choreExecutions={choreExecutions}
-            setChoreExecutions={setChoreExecutions}
-          />
+          {isChoreExecutor && (
+            <DeleteChoreExecution
+              choreId={choreId}
+              teamId={teamId}
+              choreExecutionId={choreExecution.id}
+              choreExecutions={choreExecutions}
+              setChoreExecutions={setChoreExecutions}
+            />
+          )}
         </div>
       ))}
     </main>
@@ -70,12 +74,14 @@ const ChoreExecutionsList = ({ teamId, choreId }) => {
     <main className="chore-executions-list">
       <div className="create-chore-execution">
         <p>Chore executions:</p>
-        <CreateChoreExecution
-          choreId={choreId}
-          teamId={teamId}
-          choreExecutions={choreExecutions}
-          setChoreExecutions={setChoreExecutions}
-        />
+        {isChoreExecutor && (
+          <CreateChoreExecution
+            choreId={choreId}
+            teamId={teamId}
+            choreExecutions={choreExecutions}
+            setChoreExecutions={setChoreExecutions}
+          />
+        )}
       </div>
       <p>Chore has never been executed</p>
     </main>
