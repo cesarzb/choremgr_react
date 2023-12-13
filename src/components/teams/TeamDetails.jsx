@@ -67,9 +67,14 @@ const TeamDetails = () => {
             <p>No managers yet...</p>
           )}
         </div>
-        <Link to={`/teams/${team.id}/chores/new`} className="create-chore-link">
-          Create a chore
-        </Link>
+        {auth.role === "manager" && (
+          <Link
+            to={`/teams/${team.id}/chores/new`}
+            className="create-chore-link"
+          >
+            Create a chore
+          </Link>
+        )}
         <Link
           to={`/chores`}
           state={{ teamId: team.id }}
@@ -77,10 +82,14 @@ const TeamDetails = () => {
         >
           Show team chores
         </Link>
-        <Link to={`/teams/${team.id}/edit`} className="team-edit-link">
-          Edit team
-        </Link>
-        <DeleteTeam teamId={teamId} />
+        {auth.role === "manager" && (
+          <>
+            <Link to={`/teams/${team.id}/edit`} className="team-edit-link">
+              Edit team
+            </Link>
+            <DeleteTeam teamId={teamId} />
+          </>
+        )}
         <Link to={`/dashboard`} className="teams-link">
           Back to dashboard
         </Link>

@@ -44,7 +44,9 @@ const ChoresList = () => {
       ))}
       {teamId ? (
         <>
-          <Link to="/teams/${teamId}/chores/new">Create a new chore</Link>
+          {auth.role === "manager" && (
+            <Link to="/teams/${teamId}/chores/new">Create a new chore</Link>
+          )}
           <Link to={`/teams/${teamId}`}>Back to team</Link>
         </>
       ) : (
@@ -56,7 +58,9 @@ const ChoresList = () => {
       <p>No chores to show :(</p>
       {teamId ? (
         <>
-          <Link to="/teams/${teamId}/chores/new">Create a new chore</Link>
+          {auth.role === "manager" && (
+            <Link to="/teams/${teamId}/chores/new">Create a new chore</Link>
+          )}
           <Link to={`/teams/${teamId}`}>Back to team</Link>
         </>
       ) : (
