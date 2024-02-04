@@ -18,25 +18,34 @@ const TeamsList = () => {
       });
   }, []);
 
-  return teams.length > 0 ? (
-    <main className="teams-list">
-      {teams?.map((team) => (
-        <div className="team-item" key={team.id}>
-          <div className="team-name">{team.name}</div>
-          <div className="team-description">{team.description}</div>
-          <Link to={`/teams/${team.id}`} className="team-link">
-            Show team
-          </Link>
-        </div>
-      ))}
+  const truncateText = (str) => {
+    return str.length > 100 ? str.substring(0, 80) + "..." : str;
+  };
+
+  return (
+    <main className="min-w-full flex flex-col gap-4">
       {auth.role === "manager" && (
-        <Link to="/teams/new">Create a new team</Link>
+        <Link
+          to="/teams/new"
+          className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+        >
+          Create a new team
+        </Link>
       )}
-    </main>
-  ) : (
-    <main>
-      <p>No teams to show :(</p>
-      <Link to="/teams/new">Create a new team</Link>
+      {teams.length > 0 ? (
+        teams?.map((team) => (
+          <Link
+            to={`/teams/${team.id}`}
+            className="border p-4 px-6 rounded-xl hover:bg-slate-700 transition-colors min-w-1/2 w-1/2"
+            key={team.id}
+          >
+            <div className="text-3xl font-bold mb-4">{team.name}</div>
+            <div className="mb-4">{truncateText(team.description)}</div>
+          </Link>
+        ))
+      ) : (
+        <p>No teams to show :(</p>
+      )}
     </main>
   );
 };

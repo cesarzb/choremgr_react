@@ -54,34 +54,44 @@ const Login = () => {
   };
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
-      <div className="form-field">
-        <label htmlFor="email" className="form-label">
-          Email
-        </label>
-        <input
-          id="email"
-          className="form-input"
-          value={email}
-          onChange={handleChange}
-        ></input>
-      </div>
+    <main className="min-h-full min-w-full flex justify-center items-center">
+      <form className="min-h-80 flex flex-col gap-8" onSubmit={handleSubmit}>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            className="w-80 rounded py-2 px-3 text-black focus:outline-orange-500 focus:outline"
+            value={email}
+            onChange={handleChange}
+          ></input>
+        </div>
 
-      <div className="form-field">
-        <label htmlFor="password" className="form-label">
-          Password
-        </label>
-        <input
-          id="password"
-          className="form-input"
-          type="password"
-          value={password}
-          onChange={handleChange}
-        ></input>
-      </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="password" className="">
+            Password
+          </label>
+          <input
+            id="password"
+            className="w-80 rounded py-2 px-3 text-black focus:outline-orange-500 focus:outline"
+            type="password"
+            value={password}
+            onChange={handleChange}
+          ></input>
+        </div>
 
-      <button className="login-btn">Login</button>
-    </form>
+        <div className="flex flex-col gap-2">
+          <button className="w-80 bg-orange-500 hover:bg-orange-400 transition-colors rounded p-1">
+            Login
+          </button>
+          <Link
+            to="/register"
+            className="text-orange-500 hover:text-orange-400 transition-colors"
+          >
+            Create new account
+          </Link>
+        </div>
+      </form>
+    </main>
   );
 };
 

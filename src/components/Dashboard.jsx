@@ -2,7 +2,7 @@ import TeamsList from "./teams/TeamsList";
 
 const Dashboard = () => {
   return (
-    <main className="dashboard">
+    <main className="min-w-full">
       <TeamsList />
     </main>
   );

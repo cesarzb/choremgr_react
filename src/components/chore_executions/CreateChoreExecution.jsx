@@ -35,11 +35,12 @@ const CreateChoreExecution = ({ choreId, teamId, setChoreExecutions }) => {
   };
 
   return (
-    <div className="delete-chore">
-      <button className="delete-chore-button" onClick={handleSubmit}>
-        Execute chore
-      </button>
-    </div>
+    <button
+      className="w-40 bg-orange-500 hover:bg-orange-400 transition-colors rounded p-2 mb-4"
+      onClick={handleSubmit}
+    >
+      Execute chore
+    </button>
   );
 };
 

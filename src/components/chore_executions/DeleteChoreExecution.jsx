@@ -37,11 +37,12 @@ const DeleteChoreExecution = ({
   };
 
   return (
-    <div className="delete-chore">
-      <button className="delete-chore-button" onClick={handleSubmit}>
-        Cancel execution
-      </button>
-    </div>
+    <button
+      className="max-w-fit p-2 bg-red-500 hover:bg-red-400 rounded transition-colors"
+      onClick={handleSubmit}
+    >
+      Cancel execution
+    </button>
   );
 };
 

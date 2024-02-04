@@ -25,11 +25,12 @@ const DeleteTeam = ({ teamId }) => {
   };
 
   return (
-    <div className="delete-team">
-      <button className="delete-team-button" onClick={handleSubmit}>
-        Delete team
-      </button>
-    </div>
+    <button
+      className="max-w-fit p-2 bg-red-500 hover:bg-red-400 rounded transition-colors"
+      onClick={handleSubmit}
+    >
+      Delete team
+    </button>
   );
 };
 

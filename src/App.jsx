@@ -17,10 +17,10 @@ import UpdateChore from "./components/chores/UpdateChore";
 function App() {
   return (
     <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/" element={<Layout />}>
         {/* not protected routes */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
         <Route path="/" element={<Home />} />
 
         {/* protected routes */}

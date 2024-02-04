@@ -6,7 +6,8 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     accessToken: sessionStorage.getItem("jwtToken") || "",
     expiration: sessionStorage.getItem("jwtTokenExpiration") || null,
-    expiration: sessionStorage.getItem("userRole") || "",
+    role: sessionStorage.getItem("userRole") || "",
+    currentUserId: sessionStorage.getItem("userId") || "",
   });
 
   const saveToken = (token) => {

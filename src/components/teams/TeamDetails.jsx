@@ -26,73 +26,72 @@ const TeamDetails = () => {
   return isLoading ? (
     <div className="loading">Loading...</div>
   ) : (
-    <main className="team-details">
-      <div className="team-details-item team-item" key={team.id}>
-        <div className="team-details-name team-name">{team.name}</div>
-        <div className="team-details-description team-description">
-          {team.description}
-        </div>
-        <div className="team-details-executors">
-          {team.executors ? (
-            <div className="team-details-executors">
-              <div className="team-details-executors-title">Executors:</div>
-              <div className="team-details-executors-list">
-                {team.executors?.map((executor) => (
-                  <div
-                    className="team-details-executor-email"
-                    key={executor.id}
-                  >
-                    {executor.email}
-                  </div>
-                ))}
+    <main className="">
+      <div className="rounded border p-4 px-6 rounded-xl">
+        <div className="text-8xl font-bold mb-8">{team.name}</div>
+        <div className="text-3xl mb-8">{team.description}</div>
+        <div className="flex mb-4">
+          <div className="w-1/2 max-h-80 overflow-auto">
+            {team.executors ? (
+              <div className="">
+                <div className="text-xl mb-2">Executors:</div>
+                <div className="font-bold">
+                  {team.executors?.map((executor) => (
+                    <div className="mb-1" key={executor.id}>
+                      {executor.email}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ) : (
-            <p>No executors yet...</p>
-          )}
-        </div>
-        <div className="team-details-managers">
-          {team.managers ? (
-            <div className="team-details-managers">
-              <div className="team-details-managers-title">Managers:</div>
-              <div className="team-details-managers-list">
-                {team.managers?.map((manager) => (
-                  <div className="team-details-manager-email" key={manager.id}>
-                    {manager.email}
-                  </div>
-                ))}
+            ) : (
+              <p>No executors yet...</p>
+            )}
+          </div>
+          <div className="w-1/2 max-h-80 overflow-auto">
+            {team.managers ? (
+              <div className="">
+                <div className="text-xl mb-2">Managers:</div>
+                <div className="font-bold">
+                  {team.managers?.map((manager) => (
+                    <div className="mb-1" key={manager.id}>
+                      {manager.email}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-          ) : (
-            <p>No managers yet...</p>
-          )}
+            ) : (
+              <p>No managers yet...</p>
+            )}
+          </div>
         </div>
-        {auth.role === "manager" && (
-          <Link
-            to={`/teams/${team.id}/chores/new`}
-            className="create-chore-link"
-          >
-            Create a chore
-          </Link>
-        )}
-        <Link
-          to={`/chores`}
-          state={{ teamId: team.id }}
-          className="show-team-chores-link"
-        >
-          Show team chores
-        </Link>
-        {auth.role === "manager" && (
-          <>
-            <Link to={`/teams/${team.id}/edit`} className="team-edit-link">
-              Edit team
+        <div className="flex gap-2">
+          {auth.role === "manager" && (
+            <Link
+              to={`/teams/${team.id}/chores/new`}
+              className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+            >
+              Create a chore
             </Link>
-            <DeleteTeam teamId={teamId} />
-          </>
-        )}
-        <Link to={`/dashboard`} className="teams-link">
-          Back to dashboard
-        </Link>
+          )}
+          <Link
+            to={`/chores`}
+            state={{ teamId: team.id }}
+            className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+          >
+            Show team chores
+          </Link>
+          {auth.role === "manager" && (
+            <>
+              <Link
+                to={`/teams/${team.id}/edit`}
+                className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+              >
+                Edit team
+              </Link>
+              <DeleteTeam teamId={teamId} />
+            </>
+          )}
+        </div>
       </div>
     </main>
   );
