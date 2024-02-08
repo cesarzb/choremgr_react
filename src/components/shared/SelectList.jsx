@@ -1,4 +1,5 @@
 import Select from "react-select";
+import classNames from "classnames";
 
 // https://react-select.com/home
 
@@ -34,7 +35,11 @@ const SelectList = ({ options, value, onChange: setValue }) => {
       isMulti
       name="colors"
       options={options}
-      className="basic-multi-select"
+      classNames={{
+        container: () => classNames("text-black"),
+        control: (state) => (state.isFocused ? "border-red-600" : ""),
+        menu: () => classNames("text-black"),
+      }}
       classNamePrefix="select"
       onChange={onChange}
     />
@@ -62,9 +67,13 @@ export const SingleSelect = ({ options, defaultValue, onChange: setValue }) => {
       value={defaultValue}
       name="colors"
       options={options}
-      className="basic-select"
       classNamePrefix="select"
       onChange={onChange}
+      classNames={{
+        container: () => classNames("text-black"),
+        control: (state) => (state.isFocused ? "border-red-600" : ""),
+        menu: () => classNames("text-black"),
+      }}
     />
   );
 };

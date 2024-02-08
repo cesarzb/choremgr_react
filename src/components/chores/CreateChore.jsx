@@ -74,40 +74,51 @@ const CreateChore = () => {
   };
 
   return (
-    <main className="create-chore-form">
-      <label htmlFor="chore-name" className="chore-name-label">
-        Chore name
-      </label>
-      <input
-        id="chore-name"
-        className="chore-name-input"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      ></input>
-      <label htmlFor="chore-description" className="chore-description-label">
-        Chore description
-      </label>
-      <input
-        id="chore-description"
-        className="chore-description-input"
-        value={description}
-        onChange={(e) => {
-          setDescription(e.target.value);
-        }}
-      ></input>
+    <main className="rounded border p-4 px-6 rounded-xl min-w-full flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
+        <label htmlFor="chore-name" className="text-2xl font-bold">
+          Chore name
+        </label>
+        <input
+          id="chore-name"
+          className="rounded py-1 px-3 text-black focus:outline-orange-500 focus:outline"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+      </div>
+      <div className="flex flex-col gap-4">
+        <label htmlFor="chore-description" className="text-2xl font-bold">
+          Chore description
+        </label>
+        <input
+          id="chore-description"
+          className="rounded py-1 px-3 text-black focus:outline-orange-500 focus:outline"
+          value={description}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        />
+      </div>
 
-      <label htmlFor="chore-executor" className="chore-executor-label">
-        Chore executor
-      </label>
-      <SingleSelect
-        id="chore-executor"
-        defaultValue={mapSingleToSelect(executor)}
-        options={mapToSelect(executorOptions)}
-        onChange={handleExecutorChange}
-      />
-      <button onClick={handleSubmit}>Submit</button>
+      <div className="flex flex-col gap-4">
+        <label htmlFor="chore-executor" className="chore-executor-label">
+          Chore executor
+        </label>
+        <SingleSelect
+          id="chore-executor"
+          defaultValue={mapSingleToSelect(executor)}
+          options={mapToSelect(executorOptions)}
+          onChange={handleExecutorChange}
+        />
+      </div>
+      <button
+        className="bg-orange-500 hover:bg-orange-400 transition-colors rounded p-1"
+        onClick={handleSubmit}
+      >
+        Create chore
+      </button>
     </main>
   );
 };

@@ -9,63 +9,63 @@ const ChoresList = () => {
   const location = useLocation();
   const { teamId } = location?.state || {};
 
+  const truncateText = (str) => {
+    return str.length > 100 ? str.substring(0, 80) + "..." : str;
+  };
+
   useEffect(() => {
-    fetch(
-      API_URL +
-        API_VERSION +
-        "/chores?" +
+    const showTeamId = teamId
+      ? "?" +
         new URLSearchParams({
           team_ids: teamId,
-        }),
-      {
-        headers: {
-          Authorization: auth.accessToken,
-        },
-      }
-    )
+        })
+      : "";
+    fetch(`${API_URL}${API_VERSION}/chores${showTeamId}`, {
+      headers: {
+        Authorization: auth.accessToken,
+      },
+    })
       .then((response) => response.json())
       .then((payload) => {
         setChores(payload);
       });
   }, []);
-  return chores.length > 0 ? (
-    <main className="chores-list">
-      {chores?.map((chore) => (
-        <div className="chore-item" key={chore.id}>
-          <div className="chore-name">{chore.name}</div>
-          <div className="chore-description">{chore.description}</div>
-          <Link
-            to={`/teams/${chore.team_id}/chores/${chore.id}`}
-            className="chore-link"
+  return (
+    <main className="min-w-full min-h-full flex flex-col">
+      {teamId && (
+        <div className="self-center mb-4">
+          {auth.role === "manager" && (
+            <Link
+              className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+              to={`/teams/${teamId}/chores/new`}
+            >
+              Create a new chore
+            </Link>
+          )}
+          {/* <Link
+            className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+            to={`/teams/${teamId}`}
           >
-            Show chore
-          </Link>
+            Back to team
+          </Link> */}
         </div>
-      ))}
-      {teamId ? (
-        <>
-          {auth.role === "manager" && (
-            <Link to="/teams/${teamId}/chores/new">Create a new chore</Link>
-          )}
-          <Link to={`/teams/${teamId}`}>Back to team</Link>
-        </>
-      ) : (
-        <Link to="/dashboard">Back to dashboard</Link>
       )}
-    </main>
-  ) : (
-    <main className="chores-list">
-      <p>No chores to show :(</p>
-      {teamId ? (
-        <>
-          {auth.role === "manager" && (
-            <Link to="/teams/${teamId}/chores/new">Create a new chore</Link>
-          )}
-          <Link to={`/teams/${teamId}`}>Back to team</Link>
-        </>
-      ) : (
-        <Link to="/dashboard">Back to dashboard</Link>
-      )}
+      <div className="flex gap-4 flex-wrap justify-center content-start">
+        {chores.length > 0 ? (
+          chores?.map((chore) => (
+            <Link
+              to={`/teams/${chore.team_id}/chores/${chore.id}`}
+              className="border p-4 px-6 rounded-xl hover:bg-slate-700 transition-colors h-32 min-h-32 w-2/5"
+              key={chore.id}
+            >
+              <div className="text-4xl font-bold mb-1">{chore.name}</div>
+              <div className="text-lg">{truncateText(chore.description)}</div>
+            </Link>
+          ))
+        ) : (
+          <p>No chores to show :(</p>
+        )}
+      </div>
     </main>
   );
 };

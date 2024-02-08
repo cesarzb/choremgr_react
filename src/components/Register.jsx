@@ -1,6 +1,6 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import { API_URL } from "../constants";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const Register = () => {
@@ -75,62 +75,66 @@ const Register = () => {
   };
 
   return (
-    <form className="auth-form" onSubmit={handleSubmit}>
-      <div className="form-field">
-        <label htmlFor="email" className="form-label">
-          Email
-        </label>
-        <input
-          id="email"
-          className="form-input"
-          value={email}
-          onChange={handleChange}
-        ></input>
-      </div>
+    <main className="min-h-full min-w-full flex justify-center items-center">
+      <form className="min-h-80 flex flex-col gap-8" onSubmit={handleSubmit}>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="email">Email</label>
+          <input
+            id="email"
+            className="w-80 rounded py-2 px-3 text-black focus:outline-orange-500 focus:outline"
+            value={email}
+            onChange={handleChange}
+          ></input>
+        </div>
 
-      <div className="form-field">
-        <label htmlFor="password" className="form-label">
-          Password
-        </label>
-        <input
-          id="password"
-          className="form-input"
-          type="password"
-          value={password}
-          onChange={handleChange}
-        ></input>
-      </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="password">Password</label>
+          <input
+            id="password"
+            className="w-80 rounded py-2 px-3 text-black focus:outline-orange-500 focus:outline"
+            type="password"
+            value={password}
+            onChange={handleChange}
+          ></input>
+        </div>
 
-      <div className="form-field">
-        <label htmlFor="password-confirmation" className="form-label">
-          Password Confirmation
-        </label>
-        <input
-          id="password-confirmation"
-          className="form-input"
-          type="password"
-          value={passwordConfirmation}
-          onChange={handleChange}
-        ></input>
-      </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="password-confirmation">Password Confirmation</label>
+          <input
+            id="password-confirmation"
+            className="w-80 rounded py-2 px-3 text-black focus:outline-orange-500 focus:outline"
+            type="password"
+            value={passwordConfirmation}
+            onChange={handleChange}
+          ></input>
+        </div>
 
-      <div className="form-field">
-        <label htmlFor="role" className="form-label">
-          Role
-        </label>
-        <select
-          id="role"
-          className="form-input"
-          value={role}
-          onChange={handleChange}
-        >
-          <option value="0">Executor</option>
-          <option value="1">Manager</option>
-        </select>
-      </div>
+        <div className="flex flex-col gap-2">
+          <label htmlFor="role">Role</label>
+          <select
+            id="role"
+            className="w-80 rounded py-2 px-3 text-black focus:outline-orange-500 focus:outline"
+            value={role}
+            onChange={handleChange}
+          >
+            <option value="0">Executor</option>
+            <option value="1">Manager</option>
+          </select>
+        </div>
 
-      <button className="register-btn">Register</button>
-    </form>
+        <div className="flex flex-col gap-2">
+          <button className="w-80 bg-orange-500 hover:bg-orange-400 rounded p-1 transition-colors">
+            Register
+          </button>
+          <Link
+            to="/login"
+            className="text-orange-500 hover:text-orange-400 transition-colors"
+          >
+            Already have an account?
+          </Link>
+        </div>
+      </form>
+    </main>
   );
 };
 

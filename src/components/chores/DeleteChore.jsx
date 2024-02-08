@@ -28,11 +28,12 @@ const DeleteChore = ({ choreId, teamId }) => {
   };
 
   return (
-    <div className="delete-chore">
-      <button className="delete-chore-button" onClick={handleSubmit}>
-        Delete chore
-      </button>
-    </div>
+    <button
+      className="max-w-fit p-2 bg-red-500 hover:bg-red-400 rounded transition-colors"
+      onClick={handleSubmit}
+    >
+      Delete chore
+    </button>
   );
 };
 

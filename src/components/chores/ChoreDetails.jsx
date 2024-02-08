@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { API_URL, API_VERSION } from "../../constants";
 import DeleteChore from "./DeleteChore";
 import ChoreExecutionsList from "../chore_executions/ChoreExecutionsList";
+import { User } from "feather-icons-react";
 
 const ChoreDetails = () => {
   const { auth } = useAuth();
@@ -26,39 +27,49 @@ const ChoreDetails = () => {
       });
   }, []);
 
-  const isChoreManager = () => chore?.manager?.id === auth.currentUserId;
+  const isChoreManager = () =>
+    Number(chore?.manager?.id) === Number(auth.currentUserId);
 
-  const isChoreExecutor = () => chore?.executor?.id === auth.currentUserId;
+  const isChoreExecutor = () =>
+    Number(chore?.executor?.id) === Number(auth.currentUserId);
 
   return isLoading ? (
     <div className="loading">Loading...</div>
   ) : (
-    <main className="chore-details">
-      <div className="chore-details-item chore-item" key={chore.id}>
-        <div className="chore-details-name chore-name">{chore.name}</div>
-        <div className="chore-details-description chore-description">
-          {chore.description}
-        </div>
-        <div className="chore-details-executors">
-          <div className="chore-details-executors">
-            <div className="chore-details-executors-title">Executor:</div>
-            <div className="chore-details-executors-list">
-              <div className="chore-details-executor-email">
-                {chore.executor.email}
-              </div>
+    <main className="min-w-full">
+      <div
+        className="rounded border p-4 px-6 rounded-xl min-w-full"
+        key={chore.id}
+      >
+        <div className="text-8xl font-bold mb-8">{chore.name}</div>
+        <div className="text-3xl mb-8">{chore.description}</div>
+        <div className="flex mb-4">
+          <div className="w-1/2 max-h-80 overflow-auto">
+            <div className="text-xl mb-2">Executor:</div>
+            <div className="flex justify-start gap-2">
+              <User />
+              <div className="font-semibold">{chore.executor.email}</div>
+            </div>
+          </div>
+          <div className="w-1/2 max-h-80 overflow-auto">
+            <div className="text-xl mb-2">Manager:</div>
+            <div className="flex justify-start gap-2">
+              <User />
+              <div className="font-semibold">{chore.manager.email}</div>
             </div>
           </div>
         </div>
-        <div className="chore-details-managers">
-          <div className="chore-details-managers">
-            <div className="chore-details-managers-title">Manager:</div>
-            <div className="chore-details-managers-list">
-              <div className="chore-details-manager-email">
-                {chore.manager.email}
-              </div>
-            </div>
+        {isChoreManager() && (
+          <div className="flex gap-2 mb-4">
+            <Link
+              to={`/teams/${teamId}/chores/${chore.id}/edit`}
+              className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+            >
+              Edit chore
+            </Link>
+            <DeleteChore choreId={choreId} teamId={teamId} />
           </div>
-        </div>
+        )}
         {(isChoreManager() || isChoreExecutor()) && (
           <ChoreExecutionsList
             choreId={choreId}
@@ -66,20 +77,6 @@ const ChoreDetails = () => {
             isChoreExecutor={isChoreExecutor()}
           />
         )}
-        {isChoreManager() && (
-          <>
-            <DeleteChore choreId={choreId} teamId={teamId} />
-            <Link
-              to={`/teams/${teamId}/chores/${chore.id}/edit`}
-              className="chore-edit-link"
-            >
-              Edit chore
-            </Link>
-          </>
-        )}
-        <Link to={`/teams/${teamId}`} className="team-link">
-          Back to team
-        </Link>
       </div>
     </main>
   );

@@ -27,30 +27,39 @@ const CreateTeam = () => {
   };
 
   return (
-    <main className="create-team-form">
-      <label htmlFor="team-name" className="team-name-label">
-        Team name
-      </label>
-      <input
-        id="team-name"
-        className="team-name-input"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      ></input>
-      <label htmlFor="team-description" className="team-description-label">
-        Team description
-      </label>
-      <input
-        id="team-description"
-        className="team-description-input"
-        value={description}
-        onChange={(e) => {
-          setDescription(e.target.value);
-        }}
-      ></input>
-      <button onClick={handleSubmit}>Submit</button>
+    <main className="rounded border p-4 px-6 rounded-xl min-w-full flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
+        <label htmlFor="team-name" className="text-2xl font-bold">
+          Team name
+        </label>
+        <input
+          id="team-name"
+          className="rounded py-1 px-3 text-black focus:outline-orange-500 focus:outline"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+      </div>
+      <div className="flex flex-col gap-4">
+        <label htmlFor="team-description" className="text-2xl font-bold">
+          Team description
+        </label>
+        <input
+          id="team-description"
+          className="rounded py-1 px-3 text-black focus:outline-orange-500 focus:outline"
+          value={description}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        />
+      </div>
+      <button
+        className="bg-orange-500 hover:bg-orange-400 transition-colors rounded p-1"
+        onClick={handleSubmit}
+      >
+        Create team
+      </button>
     </main>
   );
 };

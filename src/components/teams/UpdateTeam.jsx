@@ -97,56 +97,68 @@ const UpdateTeam = () => {
   return isLoading ? (
     <div className="loading">Loading...</div>
   ) : (
-    <main className="create-team-form">
-      <label htmlFor="team-name" className="team-name-label">
-        Team name
-      </label>
-      <input
-        id="team-name"
-        className="team-name-input"
-        value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-        }}
-      ></input>
-      <label htmlFor="team-description" className="team-description-label">
-        Team description
-      </label>
-      <input
-        id="team-description"
-        className="team-description-input"
-        value={description}
-        onChange={(e) => {
-          setDescription(e.target.value);
-        }}
-      ></input>
+    <main className="rounded border p-4 px-6 rounded-xl min-w-full flex flex-col gap-8">
+      <div className="flex flex-col gap-4">
+        <label htmlFor="team-name" className="text-2xl font-bold">
+          Team name
+        </label>
+        <input
+          id="team-name"
+          className="rounded py-2 px-3 text-black focus:outline-orange-500 focus:outline"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
+        />
+      </div>
+      <div className="flex flex-col gap-4">
+        <label htmlFor="team-description" className="text-2xl font-bold">
+          Team description
+        </label>
+        <input
+          id="team-description"
+          className="rounded py-2 px-3 text-black focus:outline-orange-500 focus:outline"
+          value={description}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        />
+      </div>
 
-      <label htmlFor="team-executors" className="team-executors-label">
-        Team executors
-      </label>
-      <SelectList
-        id="team-executors"
-        className="team-executors-input"
-        value={mapToSelect(executors)}
-        options={mapToSelect(executorsOptions)}
-        onChange={(e) => {
-          setExecutors(e);
-        }}
-      />
-
-      <label htmlFor="team-managers" className="team-managers-label">
-        Team managers
-      </label>
-      <SelectList
-        id="team-managers"
-        className="team-managers-input"
-        value={mapToSelect(managers)}
-        options={mapToSelect(managersOptions)}
-        onChange={(e) => {
-          setManagers(e);
-        }}
-      />
-      <button onClick={handleSubmit}>Submit</button>
+      <div className="flex flex-col gap-4">
+        <label htmlFor="team-executors" className="text-2xl font-bold">
+          Team executors
+        </label>
+        <SelectList
+          id="team-executors"
+          className="rounded py-2 px-3 text-black focus:outline-orange-500 focus:outline"
+          value={mapToSelect(executors)}
+          options={mapToSelect(executorsOptions)}
+          onChange={(e) => {
+            setExecutors(e);
+          }}
+        />
+      </div>
+      <div className="flex flex-col gap-4">
+        <label htmlFor="team-managers" className="text-2xl font-bold">
+          Team managers
+        </label>
+        <SelectList
+          id="team-managers"
+          className="rounded py-2 px-3 text-black focus:outline-orange-500 focus:outline"
+          value={mapToSelect(managers)}
+          options={mapToSelect(managersOptions)}
+          onChange={(e) => {
+            setManagers(e);
+          }}
+        />
+      </div>
+      <button
+        className="bg-orange-500 hover:bg-orange-400 transition-colors rounded p-1"
+        onClick={handleSubmit}
+      >
+        Submit
+      </button>
       <Link to={`/teams/${teamId}`} className="team-link">
         Back to team
       </Link>

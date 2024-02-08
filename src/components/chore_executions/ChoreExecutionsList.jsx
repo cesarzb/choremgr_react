@@ -40,49 +40,48 @@ const ChoreExecutionsList = ({ teamId, choreId, isChoreExecutor }) => {
   };
 
   return choreExecutions.length > 0 ? (
-    <main className="chore-executions-list">
-      <div className="create-chore-execution">
-        <p>Chore executions:</p>
-        {isChoreExecutor && (
-          <CreateChoreExecution
-            choreId={choreId}
-            teamId={teamId}
-            choreExecutions={choreExecutions}
-            setChoreExecutions={setChoreExecutions}
-          />
-        )}
-      </div>
+    <main className="max-h-80">
+      {isChoreExecutor && (
+        <CreateChoreExecution
+          choreId={choreId}
+          teamId={teamId}
+          choreExecutions={choreExecutions}
+          setChoreExecutions={setChoreExecutions}
+        />
+      )}
+      <div className="text-xl mb-2">Chore executions:</div>
 
-      {choreExecutions?.map((choreExecution) => (
-        <div className="chore-execution-item" key={choreExecution.id}>
-          <div className="chore-execution-date">
-            {formattedDate(choreExecution.date)}
+      <div className="max-h-60 overflow-auto grid grid-cols-3 gap-4">
+        {choreExecutions?.map((choreExecution) => (
+          <div
+            className="rounded border p-4 px-6 rounded-xl flex justify-between items-baseline"
+            key={choreExecution.id}
+          >
+            <div className="text-xl">{formattedDate(choreExecution.date)}</div>
+            {isChoreExecutor && (
+              <DeleteChoreExecution
+                choreId={choreId}
+                teamId={teamId}
+                choreExecutionId={choreExecution.id}
+                choreExecutions={choreExecutions}
+                setChoreExecutions={setChoreExecutions}
+              />
+            )}
           </div>
-          {isChoreExecutor && (
-            <DeleteChoreExecution
-              choreId={choreId}
-              teamId={teamId}
-              choreExecutionId={choreExecution.id}
-              choreExecutions={choreExecutions}
-              setChoreExecutions={setChoreExecutions}
-            />
-          )}
-        </div>
-      ))}
+        ))}
+      </div>
     </main>
   ) : (
-    <main className="chore-executions-list">
-      <div className="create-chore-execution">
-        <p>Chore executions:</p>
-        {isChoreExecutor && (
-          <CreateChoreExecution
-            choreId={choreId}
-            teamId={teamId}
-            choreExecutions={choreExecutions}
-            setChoreExecutions={setChoreExecutions}
-          />
-        )}
-      </div>
+    <main className="max-h-80">
+      {isChoreExecutor && (
+        <CreateChoreExecution
+          choreId={choreId}
+          teamId={teamId}
+          choreExecutions={choreExecutions}
+          setChoreExecutions={setChoreExecutions}
+        />
+      )}
+      <div className="text-xl mb-2">Chore executions:</div>
       <p>Chore has never been executed</p>
     </main>
   );

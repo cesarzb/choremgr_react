@@ -1,0 +1,56 @@
+20-11-2023
+Finally completed basic CRUD for chores.
+Many improvements required, but for now I can move on to the chores executions, 
+and then tasks.
+
+07-02-2024
+<Select
+      value={defaultValue}
+      name="colors"
+      options={options}
+      classNamePrefix="select"
+      onChange={onChange}
+      classNames={{
+        // unknown
+        // clearIndicator: () => "bg-orange-900",
+        // whole thing
+        container: () => classNames("text-black"),
+        // unknown
+        control: (state) => (state.isFocused ? "border-red-600" : ""),
+        //background behind dropdown arrow
+        // dropdownIndicator: () => "bg-green-900",
+        // unknown
+        // group: () => classNames("rounded py-2 px-3 text-black focus:outline-orange-500"),
+        // unknown
+        // groupHeading: () => "bg-green-900",
+        // background behind dropdown arrow
+        // indicatorsContainer: () => "bg-green-900",
+        // background behin dropdown arrow separator
+        // indicatorSeparator: () => "bg-green-900",
+        // input bar (but with some margin/padding around it)
+        // input: () => "bg-green-900",
+        // unknown
+        // loadingIndicator: () => "bg-green-900",
+        // unknown
+        // loadingMessage: () => "bg-green-900",
+        // dropdown as a whole
+        menu: () => classNames("text-black"),
+        // dropdown list background
+        // menuList: () => "bg-green-900",
+        // unknown
+        // menuPortal: () => "bg-green-900",
+        // unknown
+        // multiValue: () => "bg-green-900",
+        // multiValueLabel: () => "bg-orange-900",
+        // multiValueRemove: () => "bg-orange-900",
+        // noOptionsMessage: () => "bg-orange-900",
+        // unknown
+        // option: () => "bg-green-900",
+        // unknown
+        // placeholder: () => "bg-green-900",
+        // background behind selected value
+        // singleValue: () => "bg-green-900",
+        // background behind whole field with value
+        // valueContainer: () => "",
+      }}
+    />
