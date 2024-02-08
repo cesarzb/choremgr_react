@@ -30,38 +30,42 @@ const ChoresList = () => {
         setChores(payload);
       });
   }, []);
-  return chores.length > 0 ? (
-    <main className="min-w-full min-h-full flex gap-4 flex-wrap justify-center content-start">
-      {chores?.map((chore) => (
-        <Link
-          to={`/teams/${chore.team_id}/chores/${chore.id}`}
-          className="border p-4 px-6 rounded-xl hover:bg-slate-700 transition-colors h-32 min-h-32 w-2/5"
-          key={chore.id}
-        >
-          <div className="text-4xl font-bold mb-1">{chore.name}</div>
-          <div className="text-lg">{truncateText(chore.description)}</div>
-        </Link>
-      ))}
+  return (
+    <main className="min-w-full min-h-full flex flex-col">
       {teamId && (
-        <>
+        <div className="self-center mb-4">
           {auth.role === "manager" && (
-            <Link to="/teams/${teamId}/chores/new">Create a new chore</Link>
+            <Link
+              className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+              to={`/teams/${teamId}/chores/new`}
+            >
+              Create a new chore
+            </Link>
           )}
-          <Link to={`/teams/${teamId}`}>Back to team</Link>
-        </>
+          {/* <Link
+            className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+            to={`/teams/${teamId}`}
+          >
+            Back to team
+          </Link> */}
+        </div>
       )}
-    </main>
-  ) : (
-    <main className="chores-list">
-      <p>No chores to show :(</p>
-      {teamId && (
-        <>
-          {auth.role === "manager" && (
-            <Link to="/teams/${teamId}/chores/new">Create a new chore</Link>
-          )}
-          <Link to={`/teams/${teamId}`}>Back to team</Link>
-        </>
-      )}
+      <div className="flex gap-4 flex-wrap justify-center content-start">
+        {chores.length > 0 ? (
+          chores?.map((chore) => (
+            <Link
+              to={`/teams/${chore.team_id}/chores/${chore.id}`}
+              className="border p-4 px-6 rounded-xl hover:bg-slate-700 transition-colors h-32 min-h-32 w-2/5"
+              key={chore.id}
+            >
+              <div className="text-4xl font-bold mb-1">{chore.name}</div>
+              <div className="text-lg">{truncateText(chore.description)}</div>
+            </Link>
+          ))
+        ) : (
+          <p>No chores to show :(</p>
+        )}
+      </div>
     </main>
   );
 };

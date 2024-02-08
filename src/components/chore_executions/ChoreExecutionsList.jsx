@@ -72,18 +72,16 @@ const ChoreExecutionsList = ({ teamId, choreId, isChoreExecutor }) => {
       </div>
     </main>
   ) : (
-    <main className="chore-executions-list">
-      <div className="create-chore-execution">
-        <p>Chore executions:</p>
-        {isChoreExecutor && (
-          <CreateChoreExecution
-            choreId={choreId}
-            teamId={teamId}
-            choreExecutions={choreExecutions}
-            setChoreExecutions={setChoreExecutions}
-          />
-        )}
-      </div>
+    <main className="max-h-80">
+      {isChoreExecutor && (
+        <CreateChoreExecution
+          choreId={choreId}
+          teamId={teamId}
+          choreExecutions={choreExecutions}
+          setChoreExecutions={setChoreExecutions}
+        />
+      )}
+      <div className="text-xl mb-2">Chore executions:</div>
       <p>Chore has never been executed</p>
     </main>
   );

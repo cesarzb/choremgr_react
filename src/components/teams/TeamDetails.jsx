@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useParams } from "react-router-dom";
 import { API_URL, API_VERSION } from "../../constants";
 import DeleteTeam from "./DeleteTeam";
+import { User } from "feather-icons-react";
 
 const TeamDetails = () => {
   const { auth } = useAuth();
@@ -26,7 +27,7 @@ const TeamDetails = () => {
   return isLoading ? (
     <div className="loading">Loading...</div>
   ) : (
-    <main className="">
+    <main className="min-w-full">
       <div className="rounded border p-4 px-6 rounded-xl">
         <div className="text-8xl font-bold mb-8">{team.name}</div>
         <div className="text-3xl mb-8">{team.description}</div>
@@ -35,10 +36,13 @@ const TeamDetails = () => {
             {team.executors ? (
               <div className="">
                 <div className="text-xl mb-2">Executors:</div>
-                <div className="font-bold">
+                <div className="font-semibold">
                   {team.executors?.map((executor) => (
-                    <div className="mb-1" key={executor.id}>
-                      {executor.email}
+                    <div className="mb-4" key={executor.id}>
+                      <div className="flex justify-start gap-2">
+                        <User />
+                        {executor.email}
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -51,10 +55,13 @@ const TeamDetails = () => {
             {team.managers ? (
               <div className="">
                 <div className="text-xl mb-2">Managers:</div>
-                <div className="font-bold">
+                <div className="font-semibold">
                   {team.managers?.map((manager) => (
-                    <div className="mb-1" key={manager.id}>
-                      {manager.email}
+                    <div className="mb-3" key={manager.id}>
+                      <div className="flex justify-start gap-2">
+                        <User />
+                        {manager.email}
+                      </div>
                     </div>
                   ))}
                 </div>

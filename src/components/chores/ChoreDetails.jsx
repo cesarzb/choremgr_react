@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { API_URL, API_VERSION } from "../../constants";
 import DeleteChore from "./DeleteChore";
 import ChoreExecutionsList from "../chore_executions/ChoreExecutionsList";
+import { User } from "feather-icons-react";
 
 const ChoreDetails = () => {
   const { auth } = useAuth();
@@ -26,9 +27,11 @@ const ChoreDetails = () => {
       });
   }, []);
 
-  const isChoreManager = () => chore?.manager?.id === auth.currentUserId;
+  const isChoreManager = () =>
+    Number(chore?.manager?.id) === Number(auth.currentUserId);
 
-  const isChoreExecutor = () => chore?.executor?.id === auth.currentUserId;
+  const isChoreExecutor = () =>
+    Number(chore?.executor?.id) === Number(auth.currentUserId);
 
   return isLoading ? (
     <div className="loading">Loading...</div>
@@ -43,11 +46,17 @@ const ChoreDetails = () => {
         <div className="flex mb-4">
           <div className="w-1/2 max-h-80 overflow-auto">
             <div className="text-xl mb-2">Executor:</div>
-            <div className="font-bold">{chore.executor.email}</div>
+            <div className="flex justify-start gap-2">
+              <User />
+              <div className="font-semibold">{chore.executor.email}</div>
+            </div>
           </div>
           <div className="w-1/2 max-h-80 overflow-auto">
             <div className="text-xl mb-2">Manager:</div>
-            <div className="font-bold">{chore.manager.email}</div>
+            <div className="flex justify-start gap-2">
+              <User />
+              <div className="font-semibold">{chore.manager.email}</div>
+            </div>
           </div>
         </div>
         {isChoreManager() && (

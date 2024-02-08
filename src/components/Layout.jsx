@@ -1,56 +1,80 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
 import Logout from "./Logout";
 import useAuth from "../hooks/useAuth";
+import {
+  Grid,
+  Users,
+  List,
+  Settings,
+  LogIn,
+  LogOut,
+} from "feather-icons-react";
 
 const Layout = () => {
   const { auth } = useAuth();
   return (
     <div className="space-x-0 flex justify-start min-h-full min-w-full max-h-full max-w-full">
       <div className="bg-slate-900 px-4 py-4 flex-col flex justify-between items-center min-w-48 text-slate-100">
-        <div className="flex flex-col justify-start items-start gap-4">
-          <NavLink
-            to="/"
-            className="hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
-            min-w-40"
-          >
-            Dashboard
-          </NavLink>
-          <NavLink
-            to="/dashboard"
-            className="hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
-            min-w-40"
-          >
-            Teams
-          </NavLink>
-          <NavLink
-            to="/chores"
-            className="hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
-            min-w-40"
-          >
-            Chores
-          </NavLink>
-          <NavLink
-            to="/"
-            className="hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
-            min-w-40"
-          >
-            Settings
-          </NavLink>
-        </div>
+        {auth.currentUserId ? (
+          <div className="flex flex-col justify-start items-start gap-4">
+            <div
+              className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
+            min-w-40 hover:cursor-pointer"
+            >
+              <Grid />
+              <NavLink to="/">Dashboard</NavLink>
+            </div>
+            <div
+              className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
+            min-w-40 hover:cursor-pointer"
+            >
+              <Users />
+              <NavLink to="/dashboard">Teams</NavLink>
+            </div>
+            <div
+              className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
+            min-w-40 hover:cursor-pointer"
+            >
+              <List />
+              <NavLink to="/chores">Chores</NavLink>
+            </div>
+            <div
+              className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
+            min-w-40 hover:cursor-pointer"
+            >
+              <Settings />
+              <NavLink to="/">Settings</NavLink>
+            </div>
+          </div>
+        ) : (
+          <div className="flex flex-col justify-start items-start gap-4">
+            <div
+              className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
+            min-w-40 hover:cursor-pointer"
+            >
+              <Grid />
+              <NavLink to="/">Dashboard</NavLink>
+            </div>
+          </div>
+        )}
+
         <div className="flex flex-col justify-start items-start gap-4">
           {auth.currentUserId ? (
-            <Logout
-              styleClasses="hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
-            min-w-40"
-            />
-          ) : (
-            <Link
-              to="/login"
-              className="hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
-            min-w-40"
+            <div
+              className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
+            min-w-40 hover:cursor-pointer"
             >
-              Login
-            </Link>
+              <LogOut />
+              <Logout />
+            </div>
+          ) : (
+            <div
+              className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
+            min-w-40 hover:cursor-pointer"
+            >
+              <LogIn />
+              <Link to="/login">Login</Link>
+            </div>
           )}
         </div>
       </div>
