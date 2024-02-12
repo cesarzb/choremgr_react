@@ -12,5 +12,5 @@ export default defineConfig({
     strictPort: true,
     port: 5173,
   },
-  base: "/choremgr_react",
+  base: process.env.VITE_BASE_PATH || "/choremgr_react",
 });
