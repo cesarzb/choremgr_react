@@ -1,16 +1,18 @@
-FROM node:alpine
+FROM node:20-alpine
 
 WORKDIR /app
 
-COPY package.json package-lock.json ./
-RUN npm ci --only=production
+COPY package.json .
+
+RUN npm install
 
 COPY . .
 
-# EXPOSE 5173
+EXPOSE 8080
 
-CMD ["node", "src/main.jsx"]
+CMD [ "npm", "run", "dev" ]
 
 # command to run in terminal
-# docker run -d --rm -p 5173:5173 --name react_container choremgr_react_container
+# docker build . -t choremgr_react
+# docker run -d --rm -p 5173:5173 choremgr_react
 # app will be available on http://localhost:5173

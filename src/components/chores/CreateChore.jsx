@@ -3,10 +3,10 @@ import { API_URL, API_VERSION } from "../../constants";
 import useAuth from "../../hooks/useAuth";
 import { useNavigate, useParams } from "react-router-dom";
 import { SingleSelect } from "../shared/SelectList";
+import { useFormik } from "formik";
+import { choreSchema } from "../../schemas";
 
 const CreateChore = () => {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
   const [executor, setExecutor] = useState(null);
   const [executorOptions, setExecutorOptions] = useState([]);
   const { teamId } = useParams();
@@ -14,8 +14,42 @@ const CreateChore = () => {
   const { auth } = useAuth();
   const navigate = useNavigate();
 
+  const {
+    values,
+    errors,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+    handleBlur,
+    touched,
+  } = useFormik({
+    initialValues: {
+      name: "",
+      description: "",
+      executor_id: "",
+    },
+    onSubmit: (values) => {
+      const choreData = {
+        chore: { ...values },
+      };
+      fetch(API_URL + API_VERSION + `/teams/${teamId}/chores`, {
+        method: "POST",
+        headers: {
+          Authorization: auth.accessToken,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(choreData),
+      })
+        .then((response) => response.json())
+        .then(() => {
+          navigate("/chores", { state: { teamId: teamId }, replace: true });
+        });
+    },
+    validationSchema: choreSchema,
+  });
+
   useEffect(() => {
-    fetch(API_URL + API_VERSION + `/users`, {
+    fetch(API_URL + API_VERSION + `/users?team_id=${teamId}`, {
       headers: {
         Authorization: auth.accessToken,
       },
@@ -28,10 +62,7 @@ const CreateChore = () => {
 
   const mapToSelect = (teamMembers) => {
     return teamMembers
-      ? teamMembers.map((teamMember) => ({
-          value: teamMember.id,
-          label: teamMember.email,
-        }))
+      ? teamMembers?.map((teamMember) => mapSingleToSelect(teamMember))
       : null;
   };
 
@@ -44,24 +75,6 @@ const CreateChore = () => {
       : null;
   };
 
-  const handleSubmit = () => {
-    const choreData = {
-      chore: { name, description, executor_id: executor.id },
-    };
-    fetch(API_URL + API_VERSION + `/teams/${teamId}/chores`, {
-      method: "POST",
-      headers: {
-        Authorization: auth.accessToken,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(choreData),
-    })
-      .then((response) => response.json())
-      .then(() => {
-        navigate("/chores", { state: { teamId: teamId }, replace: true });
-      });
-  };
-
   const handleExecutorChange = (newValue) => {
     setExecutor(
       newValue
@@ -71,22 +84,33 @@ const CreateChore = () => {
           }
         : {}
     );
+    setFieldValue("executor_id", newValue.value);
   };
 
   return (
-    <main className="rounded border p-4 px-6 rounded-xl min-w-full flex flex-col gap-8">
+    <form
+      onSubmit={handleSubmit}
+      className="rounded border p-4 px-6 rounded-xl min-w-full flex flex-col gap-8"
+    >
       <div className="flex flex-col gap-4">
         <label htmlFor="chore-name" className="text-2xl font-bold">
           Chore name
         </label>
         <input
           id="chore-name"
-          className="rounded py-1 px-3 text-black focus:outline-orange-500 focus:outline"
-          value={name}
-          onChange={(e) => {
-            setName(e.target.value);
-          }}
+          className={`rounded py-1 px-3 text-black ${
+            errors.name && touched.name
+              ? "outline-red-500 outline"
+              : "focus:outline-orange-500 focus:outline"
+          }`}
+          value={values.name}
+          name="name"
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {errors.name && touched.name && (
+          <p className="text-red-500">{errors.name}</p>
+        )}
       </div>
       <div className="flex flex-col gap-4">
         <label htmlFor="chore-description" className="text-2xl font-bold">
@@ -94,12 +118,19 @@ const CreateChore = () => {
         </label>
         <input
           id="chore-description"
-          className="rounded py-1 px-3 text-black focus:outline-orange-500 focus:outline"
-          value={description}
-          onChange={(e) => {
-            setDescription(e.target.value);
-          }}
+          className={`rounded py-1 px-3 text-black ${
+            errors.description && touched.description
+              ? "outline-red-500 outline"
+              : "focus:outline-orange-500 focus:outline"
+          }`}
+          value={values.description}
+          name="description"
+          onChange={handleChange}
+          onBlur={handleBlur}
         />
+        {errors.description && touched.description && (
+          <p className="text-red-500">{errors.description}</p>
+        )}
       </div>
 
       <div className="flex flex-col gap-4">
@@ -111,15 +142,20 @@ const CreateChore = () => {
           defaultValue={mapSingleToSelect(executor)}
           options={mapToSelect(executorOptions)}
           onChange={handleExecutorChange}
+          name="executor_id"
+          onBlur={handleBlur}
         />
+        {errors.executor_id && (
+          <p className="text-red-500">{errors.executor_id}</p>
+        )}
       </div>
       <button
         className="bg-orange-500 hover:bg-orange-400 transition-colors rounded p-1"
-        onClick={handleSubmit}
+        type="submit"
       >
         Create chore
       </button>
-    </main>
+    </form>
   );
 };
 
