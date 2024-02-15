@@ -17,64 +17,67 @@ const Layout = () => {
       <div className="bg-slate-900 px-4 py-4 flex-col flex justify-between items-center min-w-48 text-slate-100">
         {auth.currentUserId ? (
           <div className="flex flex-col justify-start items-start gap-4">
-            <div
+            <NavLink
+              to="/"
               className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
             min-w-40 hover:cursor-pointer"
             >
               <Grid />
-              <NavLink to="/">Dashboard</NavLink>
-            </div>
-            <div
+              <div>Home</div>
+            </NavLink>
+            <NavLink
+              to="/dashboard"
               className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
             min-w-40 hover:cursor-pointer"
             >
               <Users />
-              <NavLink to="/dashboard">Teams</NavLink>
-            </div>
-            <div
+              <div>Teams</div>
+            </NavLink>
+            <NavLink
+              to="/chores"
               className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
             min-w-40 hover:cursor-pointer"
             >
               <List />
-              <NavLink to="/chores">Chores</NavLink>
-            </div>
-            <div
+              <div>Chores</div>
+            </NavLink>
+            {/* <NavLink
+              to="/"
               className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
             min-w-40 hover:cursor-pointer"
             >
               <Settings />
-              <NavLink to="/">Settings</NavLink>
-            </div>
+              <div>Settings</div>
+            </NavLink> */}
           </div>
         ) : (
           <div className="flex flex-col justify-start items-start gap-4">
-            <div
+            <NavLink
+              to="/"
               className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
             min-w-40 hover:cursor-pointer"
             >
               <Grid />
-              <NavLink to="/">Dashboard</NavLink>
-            </div>
+              <div>Dashboard</div>
+            </NavLink>
           </div>
         )}
 
         <div className="flex flex-col justify-start items-start gap-4">
           {auth.currentUserId ? (
-            <div
-              className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
+            <Logout
+              styleClasses="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
             min-w-40 hover:cursor-pointer"
-            >
-              <LogOut />
-              <Logout />
-            </div>
+            />
           ) : (
-            <div
+            <Link
+              to="/login"
               className="flex justify-start gap-2 hover:bg-slate-600 hover:text-slate-50 p-2 rounded transition-colors
             min-w-40 hover:cursor-pointer"
             >
               <LogIn />
-              <Link to="/login">Login</Link>
-            </div>
+              <div>Login</div>
+            </Link>
           )}
         </div>
       </div>

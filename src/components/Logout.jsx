@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import { API_URL } from "../constants";
+import { LogOut } from "feather-icons-react";
 
 const Logout = ({ styleClasses }) => {
   const navigate = useNavigate();
@@ -24,7 +25,8 @@ const Logout = ({ styleClasses }) => {
 
   return (
     <div onClick={handleClick} className={`${styleClasses} cursor-pointer`}>
-      Logout
+      <LogOut />
+      <div>Logout</div>
     </div>
   );
 };

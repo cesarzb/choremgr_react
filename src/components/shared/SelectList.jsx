@@ -71,7 +71,8 @@ export const SingleSelect = ({ options, defaultValue, onChange: setValue }) => {
       onChange={onChange}
       classNames={{
         container: () => classNames("text-black"),
-        control: (state) => (state.isFocused ? "border-red-600" : ""),
+        control: (state) =>
+          state.isFocused ? "border-red-600 border" : "border-red-600 border",
         menu: () => classNames("text-black"),
       }}
     />

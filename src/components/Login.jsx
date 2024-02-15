@@ -12,6 +12,8 @@ const Login = () => {
   const navigate = useNavigate();
   const { saveToken } = useAuth();
 
+  const [error, setError] = useState("");
+
   const handleChange = (e) => {
     if (e.target.id === "email") {
       setEmail(e.target.value);
@@ -49,13 +51,18 @@ const Login = () => {
         });
       }
     } catch (error) {
-      console.error("An error occurred:", error);
+      setError("Invalid email or password");
     }
   };
 
   return (
-    <main className="min-h-full min-w-full flex justify-center items-center">
+    <main className="min-h-full min-w-full max-h-full max-w-full flex justify-center items-center overflow-auto">
       <form className="min-h-80 flex flex-col gap-8" onSubmit={handleSubmit}>
+        {error && (
+          <div className="w-80 bg-red-300 text-red-800 py-2 px-3 rounded">
+            {error}
+          </div>
+        )}
         <div className="flex flex-col gap-2">
           <label htmlFor="email">Email</label>
           <input
