@@ -5,6 +5,9 @@ let base = "/";
 
 try {
   base = process.env.VITE_BASE_PATH;
+  if (base === undefined) {
+    throw new Error("Base url is undefined!");
+  }
 } catch {
   base = "/choremgr_react";
 }
