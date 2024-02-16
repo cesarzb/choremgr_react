@@ -7,10 +7,15 @@ const Logout = ({ styleClasses }) => {
   const navigate = useNavigate();
   const { saveToken } = useAuth();
 
+  const { auth } = useAuth();
+
   const handleClick = async (e) => {
     e.preventDefault();
     await fetch(`${API_URL}/users/sign_out`, {
       method: "DELETE",
+      headers: {
+        Authorization: auth.accessToken,
+      },
     });
 
     saveToken({
