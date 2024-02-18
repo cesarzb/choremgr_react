@@ -50,16 +50,20 @@ const ChoresList = () => {
           </Link> */}
         </div>
       )}
-      <div className="flex gap-4 flex-wrap justify-center content-start">
+      <div className="flex flex-col md:flex-row gap-4 flex-wrap justify-center content-start">
         {chores.length > 0 ? (
           chores?.map((chore) => (
             <Link
               to={`/teams/${chore.team_id}/chores/${chore.id}`}
-              className="border p-4 px-6 rounded-xl hover:bg-slate-700 transition-colors h-32 min-h-32 w-2/5"
+              className="border p-4 px-6 rounded-xl hover:bg-slate-700 transition-colors h-32 min-h-32 w-full lg:w-2/5"
               key={chore.id}
             >
-              <div className="text-4xl font-bold mb-1">{chore.name}</div>
-              <div className="text-lg">{truncateText(chore.description)}</div>
+              <div className="text-xl lg:text-4xl font-bold mb-1">
+                {chore.name}
+              </div>
+              <div className="text-md lg:text-lg">
+                {truncateText(chore.description)}
+              </div>
             </Link>
           ))
         ) : (
