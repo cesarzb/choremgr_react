@@ -3,7 +3,7 @@ import useAuth from "../hooks/useAuth";
 import { API_URL } from "../constants";
 import { LogOut } from "feather-icons-react";
 
-const Logout = ({ styleClasses }) => {
+const Logout = ({ clickFunction, styleClasses }) => {
   const navigate = useNavigate();
   const { saveToken } = useAuth();
 
@@ -11,6 +11,7 @@ const Logout = ({ styleClasses }) => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    clickFunction();
     await fetch(`${API_URL}/users/sign_out`, {
       method: "DELETE",
       headers: {

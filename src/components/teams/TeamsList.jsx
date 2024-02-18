@@ -28,18 +28,18 @@ const TeamsList = () => {
         {auth.role === "manager" && (
           <Link
             to="/teams/new"
-            className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+            className="sm:max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
           >
             Create a new team
           </Link>
         )}
       </div>
-      <div className="flex gap-4 flex-wrap justify-center content-start">
+      <div className="w-full sm:max-w-fit flex gap-4 flex-wrap justify-center content-start">
         {teams.length > 0 ? (
           teams?.map((team) => (
             <Link
               to={`/teams/${team.id}`}
-              className="border p-4 px-6 rounded-xl hover:bg-slate-700 transition-colors min-w-1/2 w-1/2"
+              className="min-w-full sm:max-w-fit border p-4 px-6 rounded-xl hover:bg-slate-700 transition-colors min-w-1/2 w-1/2"
               key={team.id}
             >
               <div className="text-3xl font-bold mb-4">{team.name}</div>
