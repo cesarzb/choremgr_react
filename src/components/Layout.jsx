@@ -12,21 +12,24 @@ import {
   Menu,
 } from "feather-icons-react";
 import { useState } from "react";
+import { useMediaQuery } from "react-responsive";
 
 const Layout = () => {
   const [navbarPosition, setNavbarPosition] = useState("-300px");
   const [navButtonHidden, setNavButtonHidden] = useState("");
   const { auth } = useAuth();
+  const isMobile = useMediaQuery({ query: "(max-width: 640px)" });
 
   const toggleNavbar = () => {
-    setNavbarPosition(navbarPosition === "-300px" ? "300px" : "-300px");
+    setNavbarPosition(navbarPosition === "-300px" ? "0px" : "-300px");
     setNavButtonHidden(navButtonHidden === "hidden" ? "" : "hidden");
   };
 
   return (
     <div className="space-x-0 flex justify-start min-h-full min-w-full max-h-full max-w-full">
       <div
-        className={`bg-slate-900 fixed top-0 sm:left-0 px-4 py-4 flex-col flex justify-between sm:items-center w-[300px] sm:min-w-48 sm:max-w-48 min-h-full text-slate-100 left-[${navbarPosition}]`}
+        className="bg-slate-900 fixed top-0 px-4 py-4 flex-col flex justify-between sm:items-center w-[300px] sm:min-w-48 sm:max-w-48 min-h-full text-slate-100 transition-300"
+        style={{ left: isMobile ? navbarPosition : 0 }}
       >
         {auth.currentUserId ? (
           <div>
