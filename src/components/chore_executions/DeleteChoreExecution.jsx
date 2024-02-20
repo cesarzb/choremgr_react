@@ -41,7 +41,7 @@ const DeleteChoreExecution = ({
       className="max-w-fit p-2 bg-red-500 hover:bg-red-400 rounded transition-colors"
       onClick={handleSubmit}
     >
-      Cancel execution
+      Cancel
     </button>
   );
 };

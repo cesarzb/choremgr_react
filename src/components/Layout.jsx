@@ -28,7 +28,7 @@ const Layout = () => {
   return (
     <div className="space-x-0 flex justify-start min-h-full min-w-full max-h-full max-w-full">
       <div
-        className="bg-slate-900 fixed sm:relative top-0 px-4 py-4 flex-col flex justify-between sm:items-center w-[300px] sm:min-w-48 sm:max-w-48 min-h-full text-slate-100 transition-300"
+        className="bg-slate-900 fixed sm:relative top-0 px-4 py-4 flex-col flex justify-between sm:items-center w-[300px] sm:min-w-48 sm:max-w-48 min-h-full text-slate-100 transition-300 z-10"
         style={{ left: isMobile ? navbarPosition : 0 }}
       >
         {auth.currentUserId ? (

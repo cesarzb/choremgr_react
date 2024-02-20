@@ -40,7 +40,7 @@ const ChoreExecutionsList = ({ teamId, choreId, isChoreExecutor }) => {
   };
 
   return choreExecutions.length > 0 ? (
-    <main className="max-h-80">
+    <main>
       {isChoreExecutor && (
         <CreateChoreExecution
           choreId={choreId}
@@ -51,10 +51,10 @@ const ChoreExecutionsList = ({ teamId, choreId, isChoreExecutor }) => {
       )}
       <div className="text-xl mb-2">Chore executions:</div>
 
-      <div className="max-h-60 overflow-auto grid grid-cols-3 gap-4">
+      <div className="flex flex-wrap lg:grid lg:grid-cols-3 gap-4">
         {choreExecutions?.map((choreExecution) => (
           <div
-            className="rounded border p-4 px-6 rounded-xl flex justify-between items-baseline"
+            className="w-full rounded border p-4 px-6 rounded-xl flex justify-between items-center"
             key={choreExecution.id}
           >
             <div className="text-xl">{formattedDate(choreExecution.date)}</div>

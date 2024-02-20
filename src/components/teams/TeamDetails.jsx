@@ -4,6 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { API_URL, API_VERSION } from "../../constants";
 import DeleteTeam from "./DeleteTeam";
 import { User } from "feather-icons-react";
+import { Spinner } from "../shared/Spinner";
 
 const TeamDetails = () => {
   const { auth } = useAuth();
@@ -25,21 +26,25 @@ const TeamDetails = () => {
       });
   }, []);
   return isLoading ? (
-    <div className="loading">Loading...</div>
+    <Spinner />
   ) : (
     <main className="min-w-full">
       <div className="rounded border p-4 px-6 rounded-xl">
-        <div className="text-8xl font-bold mb-8">{team.name}</div>
-        <div className="text-3xl mb-8">{team.description}</div>
-        <div className="flex mb-4">
-          <div className="w-1/2 max-h-80 overflow-auto">
+        <div className="text-4xl lg:text-8xl font-bold mb-4 lg:mb-8">
+          {team.name}
+        </div>
+        <div className="text-xl lg:text-3xl mb-4 lg:mb-8">
+          {team.description}
+        </div>
+        <div className="flex flex-col lg:flex-row mb-2 lg:mb-4">
+          <div className="w-full lg:w-1/2 max-h-80 overflow-auto">
             {team.executors ? (
               <div className="">
-                <div className="text-xl mb-2">Executors:</div>
+                <div className="text-md lg:text-xl mb-2">Executors:</div>
                 <div className="font-semibold">
                   {team.executors?.map((executor) => (
-                    <div className="mb-4" key={executor.id}>
-                      <div className="flex justify-start gap-2">
+                    <div className="mb-2 lg:mb-4" key={executor.id}>
+                      <div className="text-sm lg:text-md flex justify-start gap-2">
                         <User />
                         {executor.email}
                       </div>
@@ -51,14 +56,14 @@ const TeamDetails = () => {
               <p>No executors yet...</p>
             )}
           </div>
-          <div className="w-1/2 max-h-80 overflow-auto">
+          <div className="w-full lg:w-1/2 max-h-80 overflow-auto">
             {team.managers ? (
               <div className="">
-                <div className="text-xl mb-2">Managers:</div>
+                <div className="text-md lg:text-xl mb-2">Managers:</div>
                 <div className="font-semibold">
                   {team.managers?.map((manager) => (
-                    <div className="mb-3" key={manager.id}>
-                      <div className="flex justify-start gap-2">
+                    <div className="mb-2 lg:mb-4" key={manager.id}>
+                      <div className="text-sm lg:text-md flex justify-start gap-2">
                         <User />
                         {manager.email}
                       </div>
@@ -71,11 +76,11 @@ const TeamDetails = () => {
             )}
           </div>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-col lg:flex-row gap-2">
           {auth.role === "manager" && (
             <Link
               to={`/teams/${team.id}/chores/new`}
-              className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+              className="flex justify-center lg:justify-start w-full lg:max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
             >
               Create a chore
             </Link>
@@ -83,7 +88,7 @@ const TeamDetails = () => {
           <Link
             to={`/chores`}
             state={{ teamId: team.id }}
-            className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+            className="flex justify-center lg:justify-start w-full lg:max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
           >
             Show team chores
           </Link>
@@ -91,7 +96,7 @@ const TeamDetails = () => {
             <>
               <Link
                 to={`/teams/${team.id}/edit`}
-                className="max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
+                className="flex justify-center lg:justify-start w-full lg:max-w-fit p-2 bg-orange-500 hover:bg-orange-400 rounded transition-colors"
               >
                 Edit team
               </Link>

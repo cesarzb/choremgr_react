@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import SelectList from "../shared/SelectList";
 import { teamUpdateSchema } from "../../schemas";
 import { useFormik } from "formik";
+import { Spinner } from "../shared/Spinner";
 
 const UpdateTeam = () => {
   const [executors, setExecutors] = useState([]);
@@ -126,7 +127,7 @@ const UpdateTeam = () => {
   };
 
   return isLoading ? (
-    <div className="loading">Loading...</div>
+    <Spinner />
   ) : (
     <form
       onSubmit={handleSubmit}
