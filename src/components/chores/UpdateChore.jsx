@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { SingleSelect } from "../shared/SelectList";
 import { useFormik } from "formik";
 import { choreUpdateSchema } from "../../schemas";
+import { Spinner } from "../shared/Spinner";
 
 const UpdateChore = () => {
   const [executor, setExecutor] = useState(null);
@@ -142,7 +143,7 @@ const UpdateChore = () => {
   };
 
   return isLoading ? (
-    <div className="loading">Loading...</div>
+    <Spinner />
   ) : (
     <form
       onSubmit={handleSubmit}

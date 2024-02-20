@@ -29,7 +29,7 @@ const DeleteChore = ({ choreId, teamId }) => {
 
   return (
     <button
-      className="max-w-fit p-2 bg-red-500 hover:bg-red-400 rounded transition-colors"
+      className="flex justify-center lg:justify-start  w-full lg:max-w-fit p-2 bg-red-500 hover:bg-red-400 rounded transition-colors"
       onClick={handleSubmit}
     >
       Delete chore
