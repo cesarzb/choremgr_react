@@ -126,7 +126,7 @@ const Layout = () => {
           )}
         </div>
       </div>
-      <main className="flex justify-center items-start p-10 bg-slate-800 text-slate-50 flex-auto overflow-auto">
+      <main className="flex justify-center items-start p-10 bg-slate-800 text-slate-50 flex-auto overflow-auto min-h-full max-h-full">
         <Outlet />
       </main>
     </div>
